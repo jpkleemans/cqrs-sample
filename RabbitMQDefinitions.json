@@ -1,0 +1,176 @@
+{
+  "rabbit_version": "3.5.0",
+  "users": [
+    {
+      "name": "guest",
+      "password_hash": "fMYatmIpGhCOVjJQk6GpOJ6jCXg=",
+      "tags": "administrator"
+    },
+    {
+      "name": "cqrs_user",
+      "password_hash": "wpKWRmwYA9c07f0VanwiHAuYmhg=",
+      "tags": ""
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    },
+    {
+      "user": "cqrs_user",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "parameters": [
+  ],
+  "policies": [
+  ],
+  "queues": [
+    {
+      "name": "PensioenSysteem.Werkgever",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+      }
+    },
+    {
+      "name": "PensioenSysteem.AuditLog",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+      }
+    },
+    {
+      "name": "PensioenSysteem.Arbeidsverhouding",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+      }
+    },
+    {
+      "name": "PensioenSysteem.RegistreerAanmelding",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+      }
+    },
+    {
+      "name": "PensioenSysteem.Correspondentie",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+      }
+    },
+    {
+      "name": "PensioenSysteem.Deelnemer",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+      }
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "PensioenSysteem",
+      "vhost": "/",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {
+      }
+    },
+  ],
+  "bindings": [
+    {
+      "source": "PensioenSysteem",
+      "vhost": "/",
+      "destination": "PensioenSysteem.AuditLog",
+      "destination_type": "queue",
+      "routing_key": "#",
+      "arguments": {
+      }
+    },
+    {
+      "source": "PensioenSysteem",
+      "vhost": "/",
+      "destination": "PensioenSysteem.Arbeidsverhouding",
+      "destination_type": "queue",
+      "routing_key": "Arbeidsverhouding.#",
+      "arguments": {
+      }
+    },
+    {
+      "source": "PensioenSysteem",
+      "vhost": "/",
+      "destination": "PensioenSysteem.RegistreerAanmelding",
+      "destination_type": "queue",
+      "routing_key": "Arbeidsverhouding.Geregistreerd",
+      "arguments": {
+      }
+    },
+    {
+      "source": "PensioenSysteem",
+      "vhost": "/",
+      "destination": "PensioenSysteem.Correspondentie",
+      "destination_type": "queue",
+      "routing_key": "Deelnemer.#",
+      "arguments": {
+      }
+    },
+    {
+      "source": "PensioenSysteem",
+      "vhost": "/",
+      "destination": "PensioenSysteem.Deelnemer",
+      "destination_type": "queue",
+      "routing_key": "Deelnemer.#",
+      "arguments": {
+      }
+    },
+    {
+      "source": "PensioenSysteem",
+      "vhost": "/",
+      "destination": "PensioenSysteem.RegistreerAanmelding",
+      "destination_type": "queue",
+      "routing_key": "Deelnemer.Geregistreerd",
+      "arguments": {
+      }
+    },
+    {
+      "source": "PensioenSysteem",
+      "vhost": "/",
+      "destination": "PensioenSysteem.RegistreerAanmelding",
+      "destination_type": "queue",
+      "routing_key": "Werkgever.Geregistreerd",
+      "arguments": {
+      }
+    },
+    {
+      "source": "PensioenSysteem",
+      "vhost": "/",
+      "destination": "PensioenSysteem.Werkgever",
+      "destination_type": "queue",
+      "routing_key": "Werkgever.#",
+      "arguments": {
+      }
+    }
+  ]
+}
