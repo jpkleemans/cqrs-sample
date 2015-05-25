@@ -82,7 +82,7 @@ Lagen
 De applicatie bevat de volgende lagen (de naam van de laag is opgenomen in de 
 namespace van de verschillende componenten van de applicatie):
 
-![Layer diagram](layers.png)
+![Layer diagram](Layers.png)
 
 * Domain - het domein model. Hierin bevindt zich alle business-logica en worden 
   alle mutaties vastgelegd.De domain laag is volledig autonoom. Er zijn geen 
@@ -175,7 +175,7 @@ Logische solution architectuur
 ------------------------------
 De logische solution architectuur is als volgt opgebouwd:
 
-![Layer diagram](lsa.png)
+![Layer diagram](LSA.png)
 
 Technische implementatie
 ------------------------
