@@ -233,7 +233,7 @@ De volgende producten en frameworks zijn ingezet binnen de applicatie:
   verwerken van commands.
 * ASP.NET Web API Client - voor het aanroepen van de REST API's.
 * Newtonsoft JSon.NET - voor de serializatie van gegevens naar JSON.
-* Dapper - voor het vullen van de databases vanuit de UI componenten.
+* Dapper - voor data-access.
 * RabbitMQ - voor het publiceren van events.
 * SQL Server - voor het opslaan van gegevens voor de readmodels van de 
   verschillende UI componenten.
