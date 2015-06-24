@@ -5,6 +5,7 @@ Pensioensysteem dat loosely coupled is opgezet op basis van het CQRS pattern.
 In deze solution worden de volgende technieken / patterns gebruikt:
 
 * DDD
+* Onion architecture
 * CQRS
 * Event Sourcing
 * Message Brokering (publish / subscribe)
