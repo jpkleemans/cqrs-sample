@@ -1,0 +1,153 @@
+﻿USE [master]
+GO
+
+/****** Object:  Database [DeelnemerBeheer]    Script Date: 29-12-2014 09:07:46 ******/
+CREATE DATABASE [DeelnemerBeheer]
+ CONTAINMENT = NONE
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET COMPATIBILITY_LEVEL = 120
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [DeelnemerBeheer].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET AUTO_CLOSE OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET  DISABLE_BROKER 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [DeelnemerBeheer] SET  READ_WRITE 
+GO
+
+USE [DeelnemerBeheer]
+GO
+
+/****** Object:  Table [dbo].[Klant]    Script Date: 29-12-2014 09:08:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Deelnemer](
+	[Nummer] [nvarchar](50) NOT NULL,
+	[Version] [int] NOT NULL,
+	[Naam] [nvarchar](50) NOT NULL,
+	[EmailAdres] [nvarchar](125) NULL,
+	[WoonAdresStraat] [nvarchar](125) NULL,
+	[WoonAdresHuisnummer] [int] NULL,
+	[WoonAdresHuisnummerToevoeging] [nvarchar](5) NULL,
+	[WoonAdresPostcode] [nvarchar](10) NULL,
+	[WoonAdresPlaats] [nvarchar](100) NULL,
+	[Id] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_Deelnemer] PRIMARY KEY CLUSTERED 
+(
+	[Nummer] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+USE [master]
+GO
+
+/****** Object:  Login [DeelnemerBeheerUser]    Script Date: 29-12-2014 09:12:05 ******/
+CREATE LOGIN [DeelnemerBeheerUser] WITH PASSWORD=0x0200E9C4DB32F27EBB492448BE076B9088122FA5810F439ED2C27BD0B238E631E36D970E33E75D39CC1CD793E5FC225C981F10B3CEBD25296D8BA3978EEFB6E413EC68377659 HASHED, 
+DEFAULT_DATABASE=[DeelnemerBeheer], 
+DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+GO
+
+USE [DeelnemerBeheer]
+GO
+
+/****** Object:  User [DeelnemerBeheerUser]    Script Date: 29-12-2014 09:13:47 ******/
+CREATE USER [DeelnemerBeheerUser] FOR LOGIN [DeelnemerBeheerUser] WITH DEFAULT_SCHEMA=[dbo]
+GO
+
+EXEC sp_addrolemember 'db_owner', 'DeelnemerBeheerUser';
